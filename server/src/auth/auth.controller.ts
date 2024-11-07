@@ -5,7 +5,7 @@ import { LoginDto } from './dto/login.dto';
 import { Tokens } from './interface';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
-import { Cookie } from '@common/decorators';
+import { Cookie, UserAgent } from '@common/decorators';
 
 const REFRESH_TOKEN = 'refreshToken';
 
@@ -22,8 +22,8 @@ export class AuthController {
     }
 
     @Post('login')
-    async login(@Body() loginDto: LoginDto, @Res() response: Response) {
-        const tokens = await this.authService.login(loginDto);
+    async login(@Body() loginDto: LoginDto, @Res() response: Response, @UserAgent() userAgent: string) {
+        const tokens = await this.authService.login(loginDto, userAgent);
         if (!tokens) {
             throw new UnauthorizedException('Invalid credentials');
         }
@@ -31,11 +31,15 @@ export class AuthController {
     }
 
     @Get('refresh-tokens')
-    async refreshTokens(@Cookie(REFRESH_TOKEN) refreshToken: string, @Res() response: Response) {
+    async refreshTokens(
+        @Cookie(REFRESH_TOKEN) refreshToken: string,
+        @Res() response: Response,
+        @UserAgent() userAgent: string,
+    ) {
         if (!refreshToken) {
             throw new UnauthorizedException();
         }
-        const tokens = await this.authService.refreshTokens(refreshToken);
+        const tokens = await this.authService.refreshTokens(refreshToken, userAgent);
 
         if (!tokens) {
             throw new UnauthorizedException();
