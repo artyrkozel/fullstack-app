@@ -1,13 +1,13 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { genSaltSync, hashSync } from 'bcrypt';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UserService {
     constructor(private readonly prismaService: PrismaService) {}
 
-    async create(createUserDto: CreateUserDto) {
+    async create(createUserDto: Partial<User>) {
         const isUserExist = await this.prismaService.user.findFirst({ where: { email: createUserDto.email } });
 
         if (isUserExist) {
