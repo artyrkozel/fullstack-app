@@ -1,26 +1,31 @@
-import { Controller, Get, Post, Body, Param, Delete, ParseUUIDPipe, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, ParseUUIDPipe, UseGuards, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
+import { UserResponse } from './responses';
 
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
+    @UseInterceptors(ClassSerializerInterceptor)
     @Post()
-    create(@Body() createUserDto: CreateUserDto) {
-        return this.userService.create(createUserDto);
+    async create(@Body() createUserDto: CreateUserDto) {
+        const user = await this.userService.create(createUserDto);
+        return new UserResponse(user);
     }
 
+    @UseInterceptors(ClassSerializerInterceptor)
     @UseGuards(JwtAuthGuard)
     @Get(':idOrEmail')
-    findOne(@Param('idOrEmail') idOrEmail: string) {
-        return this.userService.findOne(idOrEmail);
+    async findOne(@Param('idOrEmail') idOrEmail: string) {
+        const user = await this.userService.findOne(idOrEmail);
+        return new UserResponse(user);
     }
 
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
-    remove(@Param('id', ParseUUIDPipe) id: string) {
+    async remove(@Param('id', ParseUUIDPipe) id: string) {
         return this.userService.remove(id);
     }
 }

@@ -40,6 +40,7 @@ export class UserService {
     remove(id: string) {
         return this.prismaService.user.delete({
             where: { id },
+            select: { id: true }
         });
     }
 

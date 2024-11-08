@@ -94,4 +94,8 @@ export class AuthService {
             },
         });
     }
+
+    deleteRefreshToken(token: string): Promise<Token> {
+        return this.prismaService.token.delete({ where: { token } });
+    }
 }

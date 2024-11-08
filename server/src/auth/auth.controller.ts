@@ -8,6 +8,9 @@ import {
     HttpStatus,
     UsePipes,
     ValidationPipe,
+    UseInterceptors,
+    ClassSerializerInterceptor,
+    BadRequestException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
@@ -16,6 +19,7 @@ import { Tokens } from './interface';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { Cookie, UserAgent } from '@common/decorators';
+import { UserResponse } from 'src/user/responses';
 
 const REFRESH_TOKEN = 'refreshToken';
 
@@ -26,10 +30,15 @@ export class AuthController {
         private readonly configService: ConfigService,
     ) {}
 
+    @UseInterceptors(ClassSerializerInterceptor)
     @UsePipes(new ValidationPipe())
     @Post('register')
-    register(@Body() createAuthDto: RegisterDto) {
-        return this.authService.register(createAuthDto);
+    async register(@Body() createAuthDto: RegisterDto) {
+        const user = await this.authService.register(createAuthDto);
+        if (!user) {
+            throw new BadRequestException('Data not valid')
+        }
+        return new UserResponse(user);
     }
 
     @UsePipes(new ValidationPipe())
@@ -40,6 +49,17 @@ export class AuthController {
             throw new UnauthorizedException('Invalid credentials');
         }
         this.setRefreshTokenToCookies(tokens, response);
+    }
+
+    @Get('logout')
+    async logout(@Cookie(REFRESH_TOKEN) refreshToken: string, @Res() response: Response) {
+        if (!refreshToken) {
+            response.sendStatus(HttpStatus.OK);
+            return;
+        }
+        await this.authService.deleteRefreshToken(refreshToken);
+        response.cookie(REFRESH_TOKEN, '', { httpOnly: true, secure: true, expires: new Date() });
+        response.sendStatus(HttpStatus.OK);
     }
 
     @Get('refresh-tokens')
