@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, UnauthorizedException, Res, HttpStatus } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    UnauthorizedException,
+    Res,
+    HttpStatus,
+    UsePipes,
+    ValidationPipe,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
@@ -16,11 +26,13 @@ export class AuthController {
         private readonly configService: ConfigService,
     ) {}
 
+    @UsePipes(new ValidationPipe())
     @Post('register')
     register(@Body() createAuthDto: RegisterDto) {
         return this.authService.register(createAuthDto);
     }
 
+    @UsePipes(new ValidationPipe())
     @Post('login')
     async login(@Body() loginDto: LoginDto, @Res() response: Response, @UserAgent() userAgent: string) {
         const tokens = await this.authService.login(loginDto, userAgent);
