@@ -8,12 +8,34 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      // fontFamily: {
+      //   sans: ['var(--font-manrope)'],
+      // },
+      backgroundImage: {
+        "login-bg": "url('/login-bg.jpg')"
       },
+      colors(theme){
+        return {
+          primary: {
+            DEFAULT: '#E0F64B'
+          },
+          secondary: {
+            DEFAULT: '#171717'
+          },
+          'bg-page': '#FAFAFA',
+          'grey': {
+            light: '#F7F7F7',
+            medium: '#EBEBEB',
+            DEFAULT: '#B8B8B8',
+            dark: '#B8B8B8',
+          },
+          'green': '#1ABC7B',
+          'red': '#F13005'
+        }
+      }
     },
   },
   plugins: [],
+  darkMode: 'class'
 };
 export default config;
