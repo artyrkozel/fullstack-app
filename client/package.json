@@ -11,6 +11,7 @@
     "api:generate": "orval"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.60.2",
     "axios": "^1.7.7",
     "next": "14.2.17",
     "react": "^18",
