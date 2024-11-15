@@ -1,0 +1,140 @@
+openapi: 3.0.0
+paths:
+  /user:
+    post:
+      operationId: UserController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+        - User
+  /user/{idOrEmail}:
+    get:
+      operationId: UserController_findOne
+      parameters:
+        - name: idOrEmail
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - User
+  /user/{id}:
+    delete:
+      operationId: UserController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - User
+  /auth/register:
+    post:
+      operationId: AuthController_register
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+        - Auth
+  /auth/login:
+    post:
+      operationId: AuthController_login
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+        - Auth
+  /auth/logout:
+    get:
+      operationId: AuthController_logout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Auth
+  /auth/refresh-tokens:
+    get:
+      operationId: AuthController_refreshTokens
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Auth
+info:
+  title: Block list
+  description: ''
+  version: 1.0.0
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    CreateUserDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+      required:
+        - email
+        - password
+        - roles
+    RegisterDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        passwordRepeat:
+          type: string
+      required:
+        - email
+        - password
+        - passwordRepeat
+    LoginDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password

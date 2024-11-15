@@ -1,12 +1,5 @@
 "use client";
-
-import type { Metadata } from "next";
 import { useEffect } from "react";
-
-const metadata: Metadata = {
-    title: "Login",
-    description: "Login to your account",
-};
 
 const Login = () => {
   useEffect(() => {
