@@ -17,25 +17,25 @@ const handler = NextAuth({
             async authorize(credentials: any) {
                 const email = credentials?.email;
                 const password = credentials?.password;
+
                 try {
-                    await axios.post('http://localhost:3000/auth/login', {
+                    const res: any = await axios.post('http://api:3000/auth/login', {
                         email,
                         password,
-                    });
+                    })
 
-                    return  { id: '123213', name:'rwqr', email: 'rwr23r' };
+                    return  { email, name: 'test', id: '22'};
                 } catch (error) {
-                    console.error('Error during authorization:');
+                    console.log(error);
                     return null;
                 }
             },
         }),
     ],
     callbacks: {
-        async jwt({ token, user }) {
-            if (user) {
-                token.id = user.id;
-                token.name = user.name;
+        async jwt({ token, user, account }) {
+            if (user && account?.provider === 'credentials') {
+                console.log('ttt');
             }
             return token;
         },
@@ -43,10 +43,17 @@ const handler = NextAuth({
             session.user = token;
             return session;
         },
+        async signIn({ account }) {
+            if (account?.provider === 'credentials') {
+                return true;
+            }
+            return false;
+        },
     },
     pages: {
         signIn: '/auth/login',
     },
+    secret: process.env.NEXTAUTH_SECRET
 });
 
 export { handler as GET, handler as POST };
