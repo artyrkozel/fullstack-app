@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function middleware(req: NextRequest, res: NextResponse) {
+export default async function middleware(req: NextRequest, res: NextResponse) {
+  const token = req.cookies.get('refreshToken')?.value || '';
 
-    return NextResponse.next();
+  if (req.nextUrl.pathname === '/login' && token) {
+    return NextResponse.redirect(req.nextUrl.origin + '/test')
+  }
+
+  if (!token && req.nextUrl.pathname !== '/login') {
+    return NextResponse.redirect(req.nextUrl.origin + '/login')
+  }
+
+  NextResponse.next();
 }
 
-export const config = {
-    matcher: '/((?!auth|_next/static|favicon.ico).*)',
-};
+export const config = { matcher: ['/test', '/login'] };

@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, ForbiddenException, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { compareSync } from 'bcrypt';
 import { RegisterDto } from './dto/register.dto';
 import { UserService } from 'src/user/user.service';
@@ -9,6 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { v4 } from 'uuid';
 import { add } from 'date-fns';
+import { JwtPayload } from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
@@ -35,7 +36,7 @@ export class AuthService {
         });
     }
 
-    async login(loginDto: LoginDto, agent: string): Promise<Tokens> {
+    async login(loginDto: LoginDto, agent: string): Promise<{tokens: Tokens, user: User}> {
         const user: User = await this.userService.findOne(loginDto.email).catch((err) => {
             this.logger.error(err);
             return null;
@@ -44,10 +45,22 @@ export class AuthService {
         if (!user || !compareSync(loginDto.password, user.password)) {
             throw new UnauthorizedException('No valid login or password');
         }
-        return this.generateTokens(user, agent);
+
+        const tokens =  await this.generateTokens(user, agent);
+        
+        return { tokens, user };
     }
 
-    async refreshTokens(refreshToken: string, agent: string): Promise<Tokens> {
+    async verifyToken(token: string) {
+        try {
+            const decodedToken = await this.jwtService.verifyAsync<Token>(token, { secret: process.env.JWT_SECRET });
+            return decodedToken;
+        } catch(e){
+            throw new UnauthorizedException('Invalid token');
+        }
+    }
+
+    async refreshTokens(refreshToken: string, agent: string): Promise<{tokens: Tokens, user: User}> {
         const token = await this.prismaService.token.findUnique({ where: { token: refreshToken } });
 
         if (!token) {
@@ -60,21 +73,24 @@ export class AuthService {
         }
 
         const user = await this.userService.findOne(token.userId);
-        return this.generateTokens(user, agent);
+        
+        const tokens = await this.generateTokens(user, agent);
+
+        return { tokens, user };
     }
 
     private async generateTokens(user: User, agent: string): Promise<Tokens> {
-        const accessToken =
-            'Bearer ' +
-            this.jwtService.sign({
+        const accessToken = await this.jwtService.signAsync({
                 id: user.id,
                 email: user.email,
                 role: user.roles,
-            });
+            }, { expiresIn: '20s', secret: process.env.JWT_SECRET });
+
+        const accessTokenRes = 'Bearer ' + accessToken;
 
         const refreshToken = await this.getRefreshToken(user.id, agent);
 
-        return { accessToken, refreshToken };
+        return { accessToken: accessTokenRes, refreshToken };
     }
 
     private async getRefreshToken(userId: string, agent: string): Promise<Token> {
@@ -98,4 +114,22 @@ export class AuthService {
     deleteRefreshToken(token: string): Promise<Token> {
         return this.prismaService.token.delete({ where: { token } });
     }
+
+    async verifyPaload(payload: JwtPayload): Promise<boolean>{
+        if (!payload.id || !payload.exp) {
+            throw new UnauthorizedException('invalid credentials');
+        }
+
+        const user: User = await this.userService.findOne(payload.id).catch((err) => {
+            this.logger.error(err);
+            return null;
+        });
+
+        if (!user) {
+            throw new ForbiddenException('user not found');
+        }
+
+        return true;
+    }
+
 }

@@ -1,11 +1,12 @@
 'use client';
 import { useMutation } from '@tanstack/react-query';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import { getBlockList } from '../../api/generated';
+
 import { TextSize, Text } from '@/app/components/Text/Text';
 import { ControllerInput } from '@/app/components/ControllerInput/ControllerInput';
 import Button from '@/app/components/Button/Button';
-import { signIn } from 'next-auth/react';
+import { getBlockList } from '../api/generated';
+import { useRouter } from 'next/navigation';
 
 interface ILogin {
     email: string;
@@ -15,7 +16,7 @@ interface ILogin {
 const Login = () => {
     const { mutateAsync: register } = useMutation({ mutationFn: getBlockList().authControllerRegister });
     const { mutateAsync } = useMutation({ mutationFn: getBlockList().authControllerLogin });
-
+    const router = useRouter();
     const form = useForm<ILogin>({
         // resolver: zodResolver(UserSchema),
         mode: 'onChange',
@@ -25,16 +26,12 @@ const Login = () => {
         },
     });
     const handleSubmit: SubmitHandler<ILogin> = async (data) => {
-        try {
-            const res = await signIn('credentials', {
-                redirect: true,
-                email: data.email,
-                password: data.password,
-                callbackUrl: '/'
-            });
-        } catch (error) {
-            console.error('login', error);
-        }
+        await mutateAsync(data, {
+            onSuccess(res: any) {
+                localStorage.setItem('token', JSON.stringify(res?.accessToken));
+                router.push('test');
+            },
+        });
     };
 
     return (

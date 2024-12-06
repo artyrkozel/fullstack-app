@@ -13,22 +13,33 @@ services:
       - 5432:5432
     volumes:
       - ./pgdata:/var/lib/postgresql/data
+    networks: 
+      - local
+
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    networks: 
+      - local
+
   api:
     container_name: api
     build:
       context: ./server
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile  
     ports:
       - 3000:3000
     environment:
       - DATABASE_URL=postgresql://postgres:12345@postgres_container:5432/fullstack
     depends_on:
       - db
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    networks: 
+      - local
 
   client:
     container_name: client
@@ -36,10 +47,16 @@ services:
       context: ./client
       dockerfile: Dockerfile
     volumes:
-      - ./client:/app  
+      - ./client:/src  
       - /app/node_modules
     ports:
       - 5000:5000
     depends_on:
       - api
       - db
+    networks: 
+      - local
+
+networks:
+  local:
+    driver: bridge

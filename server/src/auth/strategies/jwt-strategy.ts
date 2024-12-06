@@ -1,17 +1,15 @@
 import { PassportStrategy } from '@nestjs/passport';
-import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { JwtPayload } from '@auth/interface';
-import { UserService } from 'src/user/user.service';
-import { User } from '@prisma/client';
+import { AuthService } from '@auth/auth.service';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
-    private readonly logger = new Logger(JwtStrategy.name);
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt-bearer') {
     constructor(
         private readonly configService: ConfigService,
-        private readonly userService: UserService,
+        private readonly authService: AuthService
     ) {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -20,14 +18,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         });
     }
 
-    async validate(payload: JwtPayload): Promise<any> {
-        const user: User = await this.userService.findOne(payload.id).catch((err) => {
-            this.logger.error(err);
-            return null;
-        });
+    async validate(payload: JwtPayload): Promise<JwtPayload> | never {
+        const isValid = await this.authService.verifyPaload(payload);
 
-        if (!user) {
-            throw new UnauthorizedException();
+        if (!isValid) {
+            throw new UnauthorizedException('Invalid token');
         }
 
         return payload;
