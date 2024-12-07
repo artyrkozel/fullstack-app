@@ -1,3 +1,4 @@
+import { ROUTES } from '@/shared/constants/routes';
 import { NextRequest, NextResponse } from 'next/server';
 
 export default async function middleware(req: NextRequest, res: NextResponse) {
@@ -14,4 +15,4 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
   NextResponse.next();
 }
 
-export const config = { matcher: ['/test', '/login'] };
+export const config = { matcher: [ROUTES.TEST, ROUTES.LOGIN, ROUTES.REGISTER] };

@@ -1,13 +1,13 @@
 'use client';
 
-import { LoginForm } from '@/features/auth';
+import { RegisterForm } from '@/features/auth';
 import { ROUTES } from '@/shared/constants/routes';
 import Button, { ButtonTheme } from '@/shared/ui/Button/Button';
 import { TextSize } from '@/shared/ui/Text/Text';
 import { Text } from '@/shared/ui/Text/Text';
 import { useRouter } from 'next/navigation';
 
-export default function LoginPage() {
+export default function RegisterPage() {
     const router = useRouter();
 
     return (
@@ -31,18 +31,24 @@ export default function LoginPage() {
                     <div className="max-w-sm">
                         <Text
                             className="mb-4 font-bold text-center"
-                            title="Start Your Crypto Investment Today"
+                            title="Create Personal Account"
                             size={TextSize.M}
                         />
-                        <LoginForm />
+                        <RegisterForm />
                     </div>
                     <div className="max-w-80 absolute bottom-10">
                         <Text
                             className="text-[#848484] font-semibold text-center leading-6 mb-2"
-                            text="Not looking for an account?"
+                            text="Already have an account??"
                             size={TextSize.S}
                         />
-                        <Button variant={ButtonTheme.SECONDARY} className="w-full" onClick={() => router.push(ROUTES.REGISTER)}>Sing Up</Button>
+                        <Button
+                            variant={ButtonTheme.SECONDARY}
+                            className="w-full"
+                            onClick={() => router.push(ROUTES.LOGIN)}
+                        >
+                            Sing In
+                        </Button>
                     </div>
                 </div>
             </div>
