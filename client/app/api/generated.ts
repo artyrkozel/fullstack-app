@@ -17,6 +17,13 @@ export interface RegisterDto {
     passwordRepeat: string;
 }
 
+export interface UserResponse {
+    email: string;
+    id: string;
+    roles: string[];
+    updatedAt: string;
+}
+
 export interface CreateUserDto {
     email: string;
     password: string;
@@ -37,7 +44,7 @@ export const getBlockList = () => {
     };
 
     const userControllerFindOne = (idOrEmail: string, options?: SecondParameter<typeof createInstance>) => {
-        return createInstance<void>({ url: `/user/${idOrEmail}`, method: 'GET' }, options);
+        return createInstance<UserResponse>({ url: `/user/${idOrEmail}`, method: 'GET' }, options);
     };
 
     const userControllerRemove = (id: string, options?: SecondParameter<typeof createInstance>) => {

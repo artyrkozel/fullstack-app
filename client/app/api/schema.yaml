@@ -27,6 +27,10 @@ paths:
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
       tags:
         - User
   /user/{id}:
@@ -114,6 +118,25 @@ components:
       required:
         - email
         - password
+        - roles
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - email
+        - updatedAt
         - roles
     RegisterDto:
       type: object

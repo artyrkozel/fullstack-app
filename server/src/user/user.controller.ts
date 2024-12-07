@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
 import { UserResponse } from './responses';
+import { ApiOkResponse } from '@nestjs/swagger';
 
 @Controller('user')
 export class UserController {
@@ -15,6 +16,9 @@ export class UserController {
         return new UserResponse(user);
     }
 
+    @ApiOkResponse({
+        type: UserResponse,
+    })
     @UseInterceptors(ClassSerializerInterceptor)
     @UseGuards(JwtAuthGuard)
     @Get(':idOrEmail')
@@ -23,6 +27,9 @@ export class UserController {
         return new UserResponse(user);
     }
 
+    @ApiOkResponse({
+        type: UserResponse,
+    })
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
     async remove(@Param('id', ParseUUIDPipe) id: string) {

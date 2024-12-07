@@ -10,6 +10,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { v4 } from 'uuid';
 import { add } from 'date-fns';
 import { JwtPayload } from 'jsonwebtoken';
+import { ApiOkResponse } from '@nestjs/swagger';
 
 @Injectable()
 export class AuthService {

@@ -9,7 +9,7 @@ export default function Test() {
     const router = useRouter();
     const { data: test } = useQuery({
         queryKey: ['tes34234t11'],
-        queryFn: async () => getBlockList().userControllerFindOne('32d3cc14-8bbb-4abf-a93e-07ce15db9559') as any,
+        queryFn: async () => getBlockList().userControllerFindOne('32d3cc14-8bbb-4abf-a93e-07ce15db9559'),
     });
 
     const { data: test2 } = useQuery({
