@@ -48,6 +48,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./client:/src  
+      - ./client:/app
       - /app/node_modules
     ports:
       - 5000:5000

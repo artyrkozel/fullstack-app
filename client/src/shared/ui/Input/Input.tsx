@@ -3,15 +3,13 @@
 import {
   ChangeEvent,
   InputHTMLAttributes,
-  ReactNode,
   forwardRef,
   memo,
   useCallback,
 } from "react";
 import InputMask from "react-input-mask";
 import { cva } from "class-variance-authority";
-import { cn } from "@/app/utils/cn";
-
+import { cn } from "@/shared/utils/cn";
 
 export type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,

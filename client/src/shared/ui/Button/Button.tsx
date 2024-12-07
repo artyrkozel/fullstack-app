@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, FC } from "react";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/app/utils/cn";
+import { cn } from "../../utils/cn";
 
 export enum ButtonTheme {
   CLEAR = "clear",

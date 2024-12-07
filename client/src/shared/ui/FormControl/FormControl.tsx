@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, ReactNode } from "react";
-import { cn } from "@/app/utils/cn";
+import { cn } from "../../utils/cn";
 
 interface IFormControl {
   label?: string;

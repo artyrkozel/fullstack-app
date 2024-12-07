@@ -1,5 +1,1 @@
-'use client';
-
-export default function Home() {
-    return <div>main</div>;
-}
+export { HomePage as default } from '@/pages/home'

@@ -1,11 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { getBlockList } from '../api/generated';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import Button from '../components/Button/Button';
+import { getBlockList } from '../../../shared/api/generated';
+import Button from '@/shared/ui/Button/Button';
 
-export default function Test() {
+export default function TestPage() {
     const router = useRouter();
     const { data: test } = useQuery({
         queryKey: ['tes34234t11'],
