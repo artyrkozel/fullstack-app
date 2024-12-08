@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getBlockList } from '../../../shared/api/generated';
 import Button from '@/shared/ui/Button/Button';
+import { Page } from '@/shared/ui/Page/Page';
 
 export default function TestPage() {
     const router = useRouter();
@@ -32,12 +33,12 @@ export default function TestPage() {
     };
 
     return (
-        <div>
+        <Page>
             <div>{test?.email}</div>
             <div>{test2?.email}</div>
             <div>
                 <Button onClick={handleLogout}>logout</Button>
             </div>
-        </div>
+        </Page>
     );
 }

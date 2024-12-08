@@ -7,6 +7,14 @@ const nextConfig = {
       }
       return config
     },
+    images: {
+      localPatterns: [
+        {
+          pathname: '/assets/images/**',
+          search: '',
+        },
+      ],
+    },
   }
   
   export default nextConfig;

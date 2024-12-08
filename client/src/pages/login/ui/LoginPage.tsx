@@ -3,6 +3,7 @@
 import { LoginForm } from '@/features/auth';
 import { ROUTES } from '@/shared/constants/routes';
 import Button, { ButtonTheme } from '@/shared/ui/Button/Button';
+import { Page } from '@/shared/ui/Page/Page';
 import { TextSize } from '@/shared/ui/Text/Text';
 import { Text } from '@/shared/ui/Text/Text';
 import { useRouter } from 'next/navigation';
@@ -11,7 +12,7 @@ export default function LoginPage() {
     const router = useRouter();
 
     return (
-        <div>
+        <Page className='p-0'>
             <div className="h-lvh w-full grid grid-cols-2 grid-rows-1">
                 <div className="flex items-center justify-center bg-slate-400 bg-login-bg">
                     <div className="max-w-96">
@@ -46,6 +47,6 @@ export default function LoginPage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </Page>
     );
 }
