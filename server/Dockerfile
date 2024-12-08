@@ -12,6 +12,6 @@ RUN npx prisma generate
 
 CMD ["npm", "run", "start:dev"]
 
-COPY ./docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod a+x /docker-entrypoint.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+# RUN chmod a+x /docker-entrypoint.sh
+# ENTRYPOINT ["/docker-entrypoint.sh"]
