@@ -3,7 +3,6 @@ import { ControllerInput } from '@/shared/ui/ControllerInput/ControllerInput';
 import Button from '@/shared/ui/Button/Button';
 import { useLogin } from '../model/useLogin';
 
-
 export function LoginForm() {
     const { form, handleSubmitLogin, isPending } = useLogin();
 
