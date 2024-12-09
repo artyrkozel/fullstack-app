@@ -1,14 +1,17 @@
+import { cn } from '@/shared/lib/cn';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ILogo {
     collapsed: boolean;
+    className?: string;
 }
 
-export const Logo = ({ collapsed }: ILogo) => {
+export const Logo = ({ collapsed, className }: ILogo) => {
     return (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Link href="/" className={cn('flex items-center', className)}>
             <Image src="/images/logo-short.svg" alt="Logo" width={50} height={50} />
             {!collapsed && <span className="text-slate-50 text-3xl">InCrypto</span>}
-        </div>
+        </Link>
     );
 };
