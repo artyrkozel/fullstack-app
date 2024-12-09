@@ -5,12 +5,13 @@ import { SidebarItemType } from '@/shared/types/types';
 import Button from '@/shared/ui/Button/Button';
 import { Logo } from '@/shared/ui/Logo/Logo';
 import { cva } from 'class-variance-authority';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { SidebarItem } from './SidebarItem';
 import DashboardIcon from '../../../../public/svg/DashboardIcon';
 import Trade from '../../../../public/svg/Trade';
 import Market from '../../../../public/svg/Market';
+import { Logout } from '@/shared/queries/auth-service';
 
 interface ISidebar {
     className?: string;
@@ -35,17 +36,24 @@ const sidebarItemsList: SidebarItemType[] = [
 ];
 
 export function Sidebar({ className }: ISidebar) {
+    const { mutateAsync } = Logout();
     const [collapsed, setCollapsed] = useState(false);
     const pathname = usePathname();
-
-    if ([ROUTES.LOGIN, ROUTES.REGISTER].includes(pathname as string)) {
-        return null;
-    }
+    const router = useRouter();
 
     const menuList = useMemo(
         () => sidebarItemsList.map((item) => <SidebarItem item={item} collapsed={collapsed} key={item.path} />),
         [collapsed],
     );
+
+    const handleLogout = async () => {
+        await mutateAsync({});
+        router.push(ROUTES.LOGIN);
+    };
+
+    if ([ROUTES.LOGIN, ROUTES.REGISTER].includes(pathname as string)) {
+        return null;
+    }
 
     return (
         <aside className={sidebarVariants({ className, variant: collapsed ? 'shorten' : 'extended' })}>
@@ -53,11 +61,11 @@ export function Sidebar({ className }: ISidebar) {
                 <Logo className="mb-16" collapsed={collapsed} />
                 <>{menuList}</>
             </div>
-            <div className='flex flex-col gap-5'>
+            <div className="flex flex-col gap-5">
                 <Button variant="primary" onClick={() => setCollapsed((prev) => !prev)}>
                     {collapsed ? '>' : '<'}
                 </Button>
-                <Button onClick={() => {}} type="submit">
+                <Button onClick={handleLogout} type="submit">
                     Logout
                 </Button>
             </div>
