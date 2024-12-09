@@ -1,23 +1,27 @@
+'use client'
 import { ROUTES } from "@/shared/constants/routes";
-import { useLoginPost } from "@/shared/queries/auth-service";
+import { Register } from "@/shared/queries/auth-service";
+
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-interface ILogin {
+interface IRegister {
     email: string;
     password: string;
+    passwordRepeat: string;
 }
 
 export function useRegister () {
     const router = useRouter();
-    const { mutateAsync, isPending } = useLoginPost();
+    const { mutateAsync, isPending } = Register();
 
-    const form = useForm<ILogin>({
+    const form = useForm<IRegister>({
         // resolver: zodResolver(UserSchema),
         mode: 'onChange',
         defaultValues: {
             email: '',
             password: '',
+            passwordRepeat: '',
         },
     });
 
@@ -27,8 +31,8 @@ export function useRegister () {
         form,
         handleSubmitLogin: handleSubmit((data) => mutateAsync(data, {
             onSuccess(res: any) {
-                localStorage.setItem('token', JSON.stringify(res?.accessToken));
-                router.push(ROUTES.TEST);
+                console.log(res);
+                router.push(ROUTES.LOGIN);
             },
         })),
         isLoadingLogin: isPending,

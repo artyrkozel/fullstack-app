@@ -1,5 +1,6 @@
 import { ROUTES } from "@/shared/constants/routes";
-import { useLoginPost } from "@/shared/queries/auth-service";
+import { Login } from "@/shared/queries/auth-service";
+
 import { setItemLS } from "@/shared/utils/local-storage";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -11,7 +12,7 @@ interface ILogin {
 
 export function useLogin () {
     const router = useRouter();
-    const { mutateAsync, isPending } = useLoginPost();
+    const { mutateAsync, isPending } = Login();
 
     const form = useForm<ILogin>({
         // resolver: zodResolver(UserSchema),

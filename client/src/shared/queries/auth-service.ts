@@ -8,8 +8,12 @@ import { getBlockList } from "../api/generated";
 //       queryFn: () => client.get(`/user/me`).then(res => res.data),
 //     });
 
-const useLoginPost = () => {
+const Login = () => {
   return useMutation({ mutationFn: getBlockList().authControllerLogin});
 }
 
-export {useLoginPost}
+const Register = () => {
+  return useMutation({ mutationFn: getBlockList().authControllerRegister});
+}
+
+export {Login, Register}
