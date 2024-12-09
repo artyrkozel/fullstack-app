@@ -1,7 +1,7 @@
 import { ROUTES } from "@/shared/constants/routes";
 import { Login } from "@/shared/queries/auth-service";
 
-import { setItemLS } from "@/shared/utils/local-storage";
+import { setItemLS } from "@/shared/lib/local-storage";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 

@@ -24,7 +24,7 @@ apiInstance.interceptors.request.use(
    );
 
 const refresh = (faildReq: AxiosError<any>) => {
-  if (faildReq.response && faildReq.response.data.statusCode === 401  ) {
+  if (faildReq.response && faildReq.response.data.statusCode === 401 && faildReq.response.data.message === 'Token has expired') {
     return apiInstance.get("/auth/refresh-tokens")
       .then(res => {
         localStorage.setItem('token', JSON.stringify(res.data.accessToken));

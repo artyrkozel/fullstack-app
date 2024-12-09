@@ -7,3 +7,7 @@ export const setItemLS = (key: string, value: string) => {
       const serializedValue = localStorage.getItem(key);
       return serializedValue ? JSON.parse(serializedValue) : null;
   };
+
+  export const removeLS = (key: string) => {
+    localStorage.removeItem(key);
+  }

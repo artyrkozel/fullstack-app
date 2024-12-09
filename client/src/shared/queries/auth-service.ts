@@ -1,6 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getBlockList } from "../api/generated";
+import { removeLS } from "../lib/local-storage";
 
 // export const useMe = () =>
 //     useQuery<Response, AxiosError>({
@@ -16,4 +16,10 @@ const Register = () => {
   return useMutation({ mutationFn: getBlockList().authControllerRegister});
 }
 
-export {Login, Register}
+const Logout = () => {
+  return useMutation({ mutationFn: getBlockList().authControllerLogout, onSuccess: () => {
+    removeLS('token');
+},});
+}
+
+export {Login, Register, Logout}

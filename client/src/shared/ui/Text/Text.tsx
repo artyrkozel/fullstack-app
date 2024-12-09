@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { cva } from 'class-variance-authority';
-import { cn } from '@/shared/utils/cn';
-
+import { cn } from '@/shared/lib/cn';
 
 export enum TextColor {
     primary = 'primary',
