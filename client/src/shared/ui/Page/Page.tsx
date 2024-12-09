@@ -1,4 +1,4 @@
-import { cn } from '@/shared/utils/cn';
+import { cn } from '@/shared/lib/cn';
 import { memo, ReactNode } from 'react';
 import { Text } from '@/shared/ui/Text/Text';
 

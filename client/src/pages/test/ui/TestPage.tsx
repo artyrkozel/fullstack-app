@@ -15,7 +15,7 @@ export default function TestPage() {
 
     const { data: test2 } = useQuery({
         queryKey: ['42342'],
-        queryFn: async () => getBlockList().userControllerFindOne('32d3cc14-8bbb-4abf-a93e-07ce15db9559') as any,
+        queryFn: async () => getBlockList().userControllerFindOne('32d3cc14-8bbb-4abf-a93e-07ce15db955') as any,
     });
 
     const { mutate: logout } = useMutation({

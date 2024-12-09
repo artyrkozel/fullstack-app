@@ -3,6 +3,8 @@ import localFont from 'next/font/local';
 import '../styles';
 import { AppProvider } from '../providers/app-provider';
 import { Sidebar } from '@/widgets/sidebar';
+import { Toaster } from 'react-hot-toast';
+import { toastOptions } from '@/shared/config/toaster.config';
 
 const geistSans = localFont({
     src: '../fonts/GeistVF.woff',
@@ -31,6 +33,7 @@ export function RootLayout({
                 <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex`}>
                     <Sidebar />
                     {children}
+                    <Toaster position="top-right" toastOptions={toastOptions} />
                 </body>
             </html>
         </AppProvider>

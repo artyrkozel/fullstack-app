@@ -1,5 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getBlockList } from "../api/generated";
 
 // export const useMe = () =>
