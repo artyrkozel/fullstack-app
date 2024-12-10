@@ -45,6 +45,10 @@ paths:
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
       tags:
         - User
   /auth/register:
@@ -95,6 +99,43 @@ paths:
           description: ''
       tags:
         - Auth
+  /coins/list:
+    get:
+      operationId: ConinsController_getCoinsList
+      parameters:
+        - name: limit
+          required: true
+          in: query
+          schema:
+            type: number
+        - name: page
+          required: true
+          in: query
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Conins
+  /coins/{coinId}:
+    get:
+      operationId: ConinsController_getCoinBuId
+      parameters:
+        - name: coinId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoinResponse'
+      tags:
+        - Conins
 info:
   title: Block list
   description: ''
@@ -161,3 +202,59 @@ components:
       required:
         - email
         - password
+    CoinResponse:
+      type: object
+      properties:
+        uuid:
+          type: string
+        symbol:
+          type: string
+        name:
+          type: string
+        color:
+          type: string
+        iconUrl:
+          type: string
+        marketCap:
+          type: string
+        price:
+          type: string
+        listedAt:
+          type: number
+        change:
+          type: string
+        rank:
+          type: number
+        sparkline:
+          type: array
+          items:
+            type: string
+        lowVolume:
+          type: boolean
+        coinrankingUrl:
+          type: string
+        24hVolume:
+          type: string
+        btcPrice:
+          type: string
+        contractAddresses:
+          type: array
+          items:
+            type: string
+      required:
+        - uuid
+        - symbol
+        - name
+        - color
+        - iconUrl
+        - marketCap
+        - price
+        - listedAt
+        - change
+        - rank
+        - sparkline
+        - lowVolume
+        - coinrankingUrl
+        - 24hVolume
+        - btcPrice
+        - contractAddresses

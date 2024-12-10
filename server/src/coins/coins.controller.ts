@@ -1,6 +1,8 @@
 import { ClassSerializerInterceptor, Controller, Get, Param, Query, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ConinsService } from './coins.service';
 import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
+import { ApiOkResponse } from '@nestjs/swagger';
+import { CoinResponse } from './responses/coins.response';
 
 @Controller('coins')
 export class ConinsController {
@@ -15,6 +17,9 @@ export class ConinsController {
     return coinsList;
   }
   
+  @ApiOkResponse({
+    type: CoinResponse,
+})
   @UseGuards(JwtAuthGuard)
   @Get(':coinId')
   async getCoinBuId(@Param('coinId') coinId: string) {
