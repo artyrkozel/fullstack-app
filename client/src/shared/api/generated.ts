@@ -6,6 +6,30 @@
  */
 import { createInstance } from './api-instance';
 import type { BodyType } from './api-instance';
+export type ConinsControllerGetCoinsListParams = {
+    limit: number;
+    page: number;
+};
+
+export interface CoinResponse {
+    '24hVolume': string;
+    btcPrice: string;
+    change: string;
+    coinrankingUrl: string;
+    color: string;
+    contractAddresses: string[];
+    iconUrl: string;
+    listedAt: number;
+    lowVolume: boolean;
+    marketCap: string;
+    name: string;
+    price: string;
+    rank: number;
+    sparkline: string[];
+    symbol: string;
+    uuid: string;
+}
+
 export interface LoginDto {
     email: string;
     password: string;
@@ -48,7 +72,7 @@ export const getBlockList = () => {
     };
 
     const userControllerRemove = (id: string, options?: SecondParameter<typeof createInstance>) => {
-        return createInstance<void>({ url: `/user/${id}`, method: 'DELETE' }, options);
+        return createInstance<UserResponse>({ url: `/user/${id}`, method: 'DELETE' }, options);
     };
 
     const authControllerRegister = (
@@ -81,6 +105,17 @@ export const getBlockList = () => {
         return createInstance<void>({ url: `/auth/refresh-tokens`, method: 'GET' }, options);
     };
 
+    const coninsControllerGetCoinsList = (
+        params: ConinsControllerGetCoinsListParams,
+        options?: SecondParameter<typeof createInstance>,
+    ) => {
+        return createInstance<void>({ url: `/coins/list`, method: 'GET', params }, options);
+    };
+
+    const coninsControllerGetCoinBuId = (coinId: string, options?: SecondParameter<typeof createInstance>) => {
+        return createInstance<CoinResponse>({ url: `/coins/${coinId}`, method: 'GET' }, options);
+    };
+
     return {
         userControllerCreate,
         userControllerFindOne,
@@ -89,6 +124,8 @@ export const getBlockList = () => {
         authControllerLogin,
         authControllerLogout,
         authControllerRefreshTokens,
+        coninsControllerGetCoinsList,
+        coninsControllerGetCoinBuId,
     };
 };
 export type UserControllerCreateResult = NonNullable<
@@ -111,4 +148,10 @@ export type AuthControllerLogoutResult = NonNullable<
 >;
 export type AuthControllerRefreshTokensResult = NonNullable<
     Awaited<ReturnType<ReturnType<typeof getBlockList>['authControllerRefreshTokens']>>
+>;
+export type ConinsControllerGetCoinsListResult = NonNullable<
+    Awaited<ReturnType<ReturnType<typeof getBlockList>['coninsControllerGetCoinsList']>>
+>;
+export type ConinsControllerGetCoinBuIdResult = NonNullable<
+    Awaited<ReturnType<ReturnType<typeof getBlockList>['coninsControllerGetCoinBuId']>>
 >;
