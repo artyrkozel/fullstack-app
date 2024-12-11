@@ -4,13 +4,13 @@ WORKDIR /app
 EXPOSE 5000
 COPY package*.json ./
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
 RUN npx prisma generate
 
-CMD ["npm", "run", "start:dev"]
+CMD ["yarn", "run", "start:dev"]
 
 # COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 # RUN chmod a+x /docker-entrypoint.sh
