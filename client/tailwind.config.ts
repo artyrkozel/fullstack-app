@@ -9,9 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // fontFamily: {
-      //   sans: ['var(--font-manrope)'],
-      // },
+      fontFamily: {
+        sans: ['var(--font-manrope)'],
+      },
       backgroundImage: {
         "login-bg": "url('/login-bg.jpg')"
       },
