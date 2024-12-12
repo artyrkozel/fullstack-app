@@ -8,6 +8,12 @@ export enum TextColor {
     grey = 'grey',
 }
 
+export enum TextAlign {
+    RIGHT = 'right',
+    LEFT = 'left',
+    CENTER = 'center',
+}
+
 export enum TextSize {
     XS = 'size_xs',
     S = 'size_s',
@@ -20,6 +26,7 @@ interface TextProps {
     title?: string;
     text?: string;
     uppercase?: boolean;
+    align?: TextAlign;
     size?: TextSize;
     color?: TextColor;
     'data-testid'?: string;
@@ -42,6 +49,7 @@ export const Text = memo((props: TextProps) => {
         size = TextSize.M,
         color = TextColor.secondary,
         uppercase = false,
+        align,
         'data-testid': dataTestId = 'Text',
     } = props;
 
@@ -58,7 +66,10 @@ export const Text = memo((props: TextProps) => {
                 </HeaderTag>
             )}
             {text && (
-                <p className={cn('', textVariants({ size, color }), className)} data-testid={`${dataTestId}.Paragraph`}>
+                <p
+                    className={cn('', textVariants({ size, color, align }), className)}
+                    data-testid={`${dataTestId}.Paragraph`}
+                >
                     {text}
                 </p>
             )}
@@ -90,6 +101,11 @@ const textVariants = cva('', {
             [TextSize.S]: 'text-sm',
             [TextSize.M]: 'text-base',
             [TextSize.L]: 'text-2xl',
+        },
+        align: {
+            [TextAlign.RIGHT]: 'text-right',
+            [TextAlign.LEFT]: 'text-left',
+            [TextAlign.CENTER]: 'text-center',
         },
         color: {
             primary: 'text-primary',

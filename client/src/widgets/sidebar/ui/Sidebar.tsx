@@ -19,7 +19,7 @@ interface ISidebar {
 
 const sidebarItemsList: SidebarItemType[] = [
     {
-        path: '/',
+        path: '/dashboard',
         text: 'Dashboard',
         Icon: DashboardIcon,
     },
