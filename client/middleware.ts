@@ -4,7 +4,7 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
   const token = req.cookies.get('refreshToken')?.value || '';
 
   if (req.nextUrl.pathname === '/login' && token) {
-    return NextResponse.redirect(req.nextUrl.origin + '/test')
+    return NextResponse.redirect(req.nextUrl.origin + '/dashboard')
   }
 
   if (!token && req.nextUrl.pathname !== '/login') {
@@ -14,4 +14,4 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
   NextResponse.next();
 }
 
-export const config = { matcher: ['/test', '/login', '/'] };
+export const config = { matcher: ['/test', '/login', '/', '/dashboard'] };

@@ -31,7 +31,10 @@ const config: Config = {
             dark: '#B8B8B8',
           },
           'green': '#1ABC7B',
-          'red': '#F13005'
+          'red': '#F13005',
+          'border': {
+            'ligth': '#e8e8e8'
+          }
         }
       }
     },

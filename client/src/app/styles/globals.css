@@ -7,3 +7,7 @@
     @apply capitalize;
   }
 }
+
+.border-ligth {
+  @apply border border-border-ligth rounded-lg;
+}
