@@ -16,7 +16,7 @@ export default [
         },
         rules: {
             'no-undef': 'off',
-            'no-unused-vars': 'off',
+            // 'no-unused-vars': 'off',
         },
         settings: {},
     },
@@ -32,7 +32,7 @@ export default [
             '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
             '@typescript-eslint/explicit-module-boundary-types': 'off',
             'no-undef': 'off',
-            'no-unused-vars': 'off',
+            // 'no-unused-vars': 'off',
         },
     },
     {
