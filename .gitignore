@@ -1,1 +1,65 @@
 pgdata
+
+# Node modules (for all workspaces)
+node_modules/
+
+# Build outputs (for all workspaces and Docker)
+dist/
+build/
+.out/
+*.log
+
+# Docker-related
+.docker/
+docker-compose.override.yml
+docker-compose.prod.yml
+docker-compose.*.yml
+
+# npm cache
+.npm/
+package-lock.json
+npm-debug.log*
+
+# Yarn and pnpm (if using these package managers)
+.yarn/
+.pnp.*
+yarn.lock
+pnpm-lock.yaml
+
+# TypeScript output (common build directories)
+*.tsbuildinfo
+*.d.ts
+
+# IDE/editor folders
+.vscode/
+.idea/
+*.swp
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Husky hooks
+.husky/
+
+# Lint-staged cache
+.lintstagedrc.json
+lint-staged*.json
+
+# Turborepo cache
+.turbo/
+.turborepo/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Local builds
+tmp/
+out/

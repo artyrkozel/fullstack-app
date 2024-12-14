@@ -27,8 +27,8 @@ services:
   api:
     container_name: api
     build:
-      context: ./server
-      dockerfile: Dockerfile  
+      context: ./apps/server
+      dockerfile: Dockerfile
     ports:
       - 3000:3000
     environment:
@@ -37,7 +37,7 @@ services:
       - db
       - minio
     volumes:
-      - ./server:/app
+      - ./apps/server:/app
       - /app/node_modules
     networks: 
       - local
@@ -45,31 +45,28 @@ services:
   client:
     container_name: client
     build:
-      context: ./client
+      context: ./apps/client
       dockerfile: Dockerfile
-    volumes:
-      - ./client:/src  
-      - ./client:/app
-      - /app/node_modules
     ports:
       - 5000:5000
     depends_on:
       - api
-      - db
+    volumes:
+      - ./apps/client:/app
+      - /app/node_modules
     networks: 
       - local
   
   minio:
     container_name: minio
     image: minio/minio:latest
-    entrypoint: sh
     ports:
-    - 9000:9000
-    - 9001:9001
-    command: -c 'minio server --console-address ":9001" /data'
+      - 9000:9000
+      - 9001:9001
+    command: server --console-address ":9001" /data
     environment:
-    - MINIO_ROOT_USER=minio
-    - MINIO_ROOT_PASSWORD=minio123
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
     volumes:
       - minio-data:/data
     networks: 
@@ -77,6 +74,7 @@ services:
 
 volumes:
   minio-data:
+  pgdata:
 
 networks:
   local:
