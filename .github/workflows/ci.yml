@@ -27,12 +27,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Navigate to the server directory
-        run: cd apps/server
-
-      - name: Generate Prisma Client
-        run: pnpm prisma generate
-
       - name: Linting
         run: pnpm run lint
 
