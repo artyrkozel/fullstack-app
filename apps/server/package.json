@@ -39,6 +39,7 @@
     "class-validator": "^0.14.1",
     "cookie-parser": "^1.4.7",
     "date-fns": "^4.1.0",
+    "express": "^4.21.2",
     "nestjs-minio-client": "^2.2.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
