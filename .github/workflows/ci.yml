@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
   pull_request:
-    branches: ["master"]
+    branches: ["main"]
 
 jobs:
   pipeline:
@@ -17,16 +17,21 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: "17"
-          cache: 'pnpm'
+          node-version: "18.17.1"
 
       - name: Install pnpm
         run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
+          npm install -g pnpm
+          pnpm install
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Install Prisma and generate client in the api app
+        run: |
+          cd apps/server
+          pnpm add prisma @prisma/client
+          npx prisma generate
 
       - name: Linting
         run: pnpm run lint

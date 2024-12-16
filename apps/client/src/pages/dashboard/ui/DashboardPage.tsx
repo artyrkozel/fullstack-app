@@ -3,7 +3,6 @@ import { HStack } from '@/shared/ui/Stack';
 import { Wallet } from '@/widgets/wallet';
 
 export default function DashboardPage() {
-    console.log('test');
     return (
         <Page pageTitle="Dashboard">
             <div className="grid grid-cols-4 grid-rows-2 gap-x-4 gap-y-10">
