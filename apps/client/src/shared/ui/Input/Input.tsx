@@ -5,7 +5,7 @@ import { ChangeEvent, InputHTMLAttributes, forwardRef, memo, useCallback } from 
 import InputMask from 'react-input-mask';
 import { cn } from '@/shared/lib/cn';
 
-export type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
+export type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'children'>;
 
 export interface IInputProps extends HTMLInputProps {
     className?: string;
