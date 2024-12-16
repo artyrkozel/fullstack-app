@@ -30,7 +30,7 @@ jobs:
       - name: Install Prisma and generate client in the api app
         run: |
           cd apps/server
-          pnpm add prisma @prisma/client --dev
+          pnpm add prisma @prisma/client
           npx prisma generate
 
       - name: Linting
