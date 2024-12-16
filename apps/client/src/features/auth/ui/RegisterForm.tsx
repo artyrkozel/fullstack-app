@@ -1,7 +1,7 @@
 import { FormProvider } from 'react-hook-form';
-import { ControllerInput } from '@/shared/ui/ControllerInput/ControllerInput';
-import Button from '@/shared/ui/Button/Button';
 import { useRegister } from '../model/useRegister';
+import Button from '@/shared/ui/Button/Button';
+import { ControllerInput } from '@/shared/ui/ControllerInput/ControllerInput';
 
 export function RegisterForm() {
     const { form, handleSubmitLogin, isLoadingLogin } = useRegister();

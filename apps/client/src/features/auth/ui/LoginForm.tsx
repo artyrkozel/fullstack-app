@@ -1,7 +1,7 @@
 import { FormProvider } from 'react-hook-form';
-import { ControllerInput } from '@/shared/ui/ControllerInput/ControllerInput';
-import Button from '@/shared/ui/Button/Button';
 import { useLogin } from '../model/useLogin';
+import Button from '@/shared/ui/Button/Button';
+import { ControllerInput } from '@/shared/ui/ControllerInput/ControllerInput';
 
 export function LoginForm() {
     const { form, handleSubmitLogin, isPending } = useLogin();

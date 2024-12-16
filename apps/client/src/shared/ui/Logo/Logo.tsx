@@ -1,6 +1,6 @@
-import { cn } from '@/shared/lib/cn';
 import Image from 'next/image';
 import Link from 'next/link';
+import { cn } from '@/shared/lib/cn';
 
 interface ILogo {
     collapsed: boolean;

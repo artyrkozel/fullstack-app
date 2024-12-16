@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useCallback, useRef } from "react";
+import React, { ChangeEvent, forwardRef, useCallback, useRef } from "react";
 import Button, { ButtonTheme } from "../Button/Button";
 
 export type FileChangeEvent = {
@@ -41,7 +41,7 @@ export type InputFileProps = {
   previewData?: string[];
 };
 
-export const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
+export const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
   (props) => {
     let inputRef = useRef<HTMLInputElement>(null);
     const triggerEditing = () => {

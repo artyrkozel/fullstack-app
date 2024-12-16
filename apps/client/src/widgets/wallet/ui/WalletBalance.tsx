@@ -1,9 +1,9 @@
-import { cn } from '@/shared/lib/cn';
 import Image from 'next/image';
+import Mask from '../../../../public/images/banner-mask.png';
+import Vector from '../../../../public/images/vector.webp';
+import { cn } from '@/shared/lib/cn';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { TextSize, Text } from '@/shared/ui/Text/Text';
-import Mask from '../../../../public/images/banner-mask.png';
-import Vector from '../../../../public/images/vector.png';
 
 interface IWalletBalance {
     className?: string;
@@ -22,7 +22,7 @@ export const WalletBalance = ({ className }: IWalletBalance) => {
                 <Text className="text-white" text="Total Assets" size={TextSize.XS} />
                 <Text className="text-white font-bold" text={'2,460.89'} size={TextSize.L} />
             </VStack>
-            <Image className="" src={Vector} alt="vector" />
+            <Image className="mb-[12px]" src={Vector} alt="vector" width={120} height={120} />
         </HStack>
     );
 };

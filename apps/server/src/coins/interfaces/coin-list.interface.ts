@@ -5,9 +5,9 @@ export interface CryptoStats {
     totalExchanges: number;
     totalMarketCap: string;
     total24hVolume: string;
-  };
-  
-  export interface Coin {
+}
+
+export interface Coin {
     uuid: string;
     symbol: string;
     name: string;
@@ -21,24 +21,24 @@ export interface CryptoStats {
     sparkline: string[];
     lowVolume: boolean;
     coinrankingUrl: string;
-    "24hVolume": string;
+    '24hVolume': string;
     btcPrice: string;
     contractAddresses: string[];
-  };
-  
-  export interface CryptoData {
+}
+
+export interface CryptoData {
     stats: CryptoStats;
     coins: Coin[];
-  };
-  
-  export interface CoinListResponse {
+}
+
+export interface CoinListResponse {
     status: string;
     data: CryptoData;
-  };
+}
 
-  export interface CoinResponse {
+export interface CoinResponse {
     status: string;
     data: {
-      coin: Coin;
+        coin: Coin;
     };
-  };
+}

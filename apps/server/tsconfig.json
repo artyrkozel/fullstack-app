@@ -30,6 +30,7 @@
       "@auth/*": [
         "src/auth/*"
       ]
-    }
-  }
+    },
+  },
+  "include": ["src/**/*", "prisma/**/*"]
 }

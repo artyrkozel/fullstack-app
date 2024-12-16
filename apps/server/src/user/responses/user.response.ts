@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Role, User } from "@prisma/client";
-import { Exclude } from "class-transformer";
+import { ApiProperty } from '@nestjs/swagger';
+import { Role, User } from '@prisma/client';
+import { Exclude } from 'class-transformer';
 
 export class UserResponse implements User {
     @ApiProperty()

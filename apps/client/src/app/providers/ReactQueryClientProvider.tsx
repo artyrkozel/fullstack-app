@@ -1,6 +1,6 @@
 'use client';
-import { queryClientConfig } from '@/shared/config/react-query.config';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { queryClientConfig } from '@/shared/config/react-query.config';
 
 const queryClient = new QueryClient(queryClientConfig);
 

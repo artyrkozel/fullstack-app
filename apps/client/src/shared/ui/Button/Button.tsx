@@ -1,5 +1,5 @@
-import { ButtonHTMLAttributes, FC } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
+import { ButtonHTMLAttributes, FC } from 'react';
 import { cn } from '../../lib/cn';
 
 export enum ButtonTheme {

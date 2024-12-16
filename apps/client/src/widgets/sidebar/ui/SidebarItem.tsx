@@ -1,10 +1,10 @@
 'use client';
 
-import { cn } from '@/shared/lib/cn';
-import { SidebarItemType } from '@/shared/types/types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { memo } from 'react';
+import { cn } from '@/shared/lib/cn';
+import { SidebarItemType } from '@/shared/types/types';
 
 interface SidebarItemProps {
     item: SidebarItemType;

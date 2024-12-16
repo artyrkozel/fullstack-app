@@ -1,17 +1,17 @@
 'use client';
 
-import { ROUTES } from '@/shared/constants/routes';
-import { SidebarItemType } from '@/shared/types/types';
-import Button from '@/shared/ui/Button/Button';
-import { Logo } from '@/shared/ui/Logo/Logo';
 import { cva } from 'class-variance-authority';
 import { usePathname, useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
-import { SidebarItem } from './SidebarItem';
 import DashboardIcon from '../../../../public/svg/DashboardIcon';
-import Trade from '../../../../public/svg/Trade';
 import Market from '../../../../public/svg/Market';
+import Trade from '../../../../public/svg/Trade';
+import { SidebarItem } from './SidebarItem';
+import { ROUTES } from '@/shared/constants/routes';
 import { Logout } from '@/shared/queries/auth-service';
+import { SidebarItemType } from '@/shared/types/types';
+import Button from '@/shared/ui/Button/Button';
+import { Logo } from '@/shared/ui/Logo/Logo';
 
 interface ISidebar {
     className?: string;

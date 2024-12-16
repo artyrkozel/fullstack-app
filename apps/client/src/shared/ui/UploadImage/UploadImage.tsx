@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-
 import memoize from "lodash/memoize";
+import React, { forwardRef, useCallback, useEffect, useMemo, useState } from "react";
+
 
 import {
   FileChangeEvent,
@@ -12,7 +12,7 @@ export const IMG_TYPES = "image/jpeg,image/png,image/svg";
 export const EXCEL_TYPES = ".xls, .xlsx";
 export const PDF_TYPES = ".pdf";
 
-export const Upload = React.forwardRef<HTMLInputElement, InputFileProps>(
+export const Upload = forwardRef<HTMLInputElement, InputFileProps>(
   (props, ref) => {
     const {
       onChange,

@@ -7,22 +7,20 @@
     "docker:up": "docker-compose up --build",
     "docker:down": "docker-compose down",
     "prepare": "husky install",
-    "lint": "turbo run lint"
+    "lint": "turbo lint"
   },
   "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "prettier": "^3.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
-    "turbo": "^2.3.3",
-    "eslint-config-custom": "*"
+    "turbo": "^2.3.3"
+    
   },
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
-  "packageManager": "yarn@1.22.22",
-  "lint-staged": {
-    "apps/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
-    ]
-  }
+  "packageManager": "pnpm@9.15.0"
 }

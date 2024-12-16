@@ -1,9 +1,9 @@
-import { ROUTES } from "@/shared/constants/routes";
-import { Login } from "@/shared/queries/auth-service";
-
-import { setItemLS } from "@/shared/lib/local-storage";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { ROUTES } from "@/shared/constants/routes";
+import { setItemLS } from "@/shared/lib/local-storage";
+import { Login } from "@/shared/queries/auth-service";
+
 
 interface ILogin {
     email: string;

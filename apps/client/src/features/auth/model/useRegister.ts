@@ -1,9 +1,9 @@
 'use client'
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import { ROUTES } from "@/shared/constants/routes";
 import { Register } from "@/shared/queries/auth-service";
 
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
 
 interface IRegister {
     email: string;

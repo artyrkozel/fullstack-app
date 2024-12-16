@@ -1,10 +1,10 @@
 'use client';
 
-import { ChangeEvent, FC, forwardRef, InputHTMLAttributes, memo, RefObject, FocusEvent } from 'react';
 import _ from 'lodash';
+import { ChangeEvent, FC, forwardRef, InputHTMLAttributes, memo, RefObject, FocusEvent } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import Input from '../Input/Input';
 import { FormControl } from '../FormControl/FormControl';
+import Input from '../Input/Input';
 
 interface IControllerInputProps extends InputHTMLAttributes<HTMLInputElement> {
     inputLabel?: string;

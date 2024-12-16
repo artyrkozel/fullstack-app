@@ -1,16 +1,17 @@
 import { ConflictException, ForbiddenException, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
-import { compareSync } from 'bcrypt';
-import { RegisterDto } from './dto/register.dto';
-import { UserService } from 'src/user/user.service';
-import { Token, User } from '@prisma/client';
-import { LoginDto } from './dto/login.dto';
-import { Tokens } from './interface';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { v4 } from 'uuid';
+import { Token, User } from '@prisma/client';
+import { compareSync } from 'bcrypt';
 import { add } from 'date-fns';
 import { JwtPayload } from 'jsonwebtoken';
-import { ApiOkResponse } from '@nestjs/swagger';
+import { v4 } from 'uuid';
+
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { Tokens } from './interface';
+
+import { PrismaService } from 'src/prisma/prisma.service';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class AuthService {
@@ -37,7 +38,7 @@ export class AuthService {
         });
     }
 
-    async login(loginDto: LoginDto, agent: string): Promise<{tokens: Tokens, user: User}> {
+    async login(loginDto: LoginDto, agent: string): Promise<{ tokens: Tokens; user: User }> {
         const user: User = await this.userService.findOne(loginDto.email).catch((err) => {
             this.logger.error(err);
             return null;
@@ -47,8 +48,8 @@ export class AuthService {
             throw new UnauthorizedException('No valid login or password');
         }
 
-        const tokens =  await this.generateTokens(user, agent);
-        
+        const tokens = await this.generateTokens(user, agent);
+
         return { tokens, user };
     }
 
@@ -56,12 +57,12 @@ export class AuthService {
         try {
             const decodedToken = await this.jwtService.verifyAsync<Token>(token, { secret: process.env.JWT_SECRET });
             return decodedToken;
-        } catch(e){
+        } catch (e) {
             throw new UnauthorizedException('Invalid token');
         }
     }
 
-    async refreshTokens(refreshToken: string, agent: string): Promise<{tokens: Tokens, user: User}> {
+    async refreshTokens(refreshToken: string, agent: string): Promise<{ tokens: Tokens; user: User }> {
         const token = await this.prismaService.token.findUnique({ where: { token: refreshToken } });
 
         if (!token) {
@@ -74,18 +75,21 @@ export class AuthService {
         }
 
         const user = await this.userService.findOne(token.userId);
-        
+
         const tokens = await this.generateTokens(user, agent);
 
         return { tokens, user };
     }
 
     private async generateTokens(user: User, agent: string): Promise<Tokens> {
-        const accessToken = await this.jwtService.signAsync({
+        const accessToken = await this.jwtService.signAsync(
+            {
                 id: user.id,
                 email: user.email,
                 role: user.roles,
-            }, { expiresIn: '20s', secret: process.env.JWT_SECRET });
+            },
+            { expiresIn: '20s', secret: process.env.JWT_SECRET },
+        );
 
         const accessTokenRes = 'Bearer ' + accessToken;
 
@@ -116,7 +120,7 @@ export class AuthService {
         return this.prismaService.token.delete({ where: { token } });
     }
 
-    async verifyPaload(payload: JwtPayload): Promise<boolean>{
+    async verifyPaload(payload: JwtPayload): Promise<boolean> {
         if (!payload.id || !payload.exp) {
             throw new UnauthorizedException('invalid credentials');
         }
@@ -132,5 +136,4 @@ export class AuthService {
 
         return true;
     }
-
 }

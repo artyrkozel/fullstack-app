@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Text, TextAlign } from '@/shared/ui/Text/Text';
 import { cn } from '@/shared/lib/cn';
+import { Text, TextAlign } from '@/shared/ui/Text/Text';
 
 interface IWalletListProps {
     className?: string;
@@ -17,6 +17,7 @@ export const WalletList: FC<IWalletListProps> = ({ className, walletCoins }) => 
             {/* {walletCoins.map((el: any) => (
         <WalletItem key={el.name} walletData={el} />
       ))} */}
+      <div>dfdfdf</div>
         </div>
     );
 };

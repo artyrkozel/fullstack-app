@@ -1,5 +1,5 @@
-import { memo } from 'react';
 import { cva } from 'class-variance-authority';
+import { memo } from 'react';
 import { cn } from '@/shared/lib/cn';
 
 export enum TextColor {

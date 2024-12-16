@@ -1,7 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { genSaltSync, hashSync } from 'bcrypt';
 import { User } from '@prisma/client';
+import { genSaltSync, hashSync } from 'bcrypt';
+
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class UserService {
@@ -40,7 +41,7 @@ export class UserService {
     remove(id: string) {
         return this.prismaService.user.delete({
             where: { id },
-            select: { id: true }
+            select: { id: true },
         });
     }
 

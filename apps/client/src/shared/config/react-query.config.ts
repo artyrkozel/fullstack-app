@@ -1,5 +1,5 @@
 import { QueryCache, QueryClientConfig } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+import toastInstance  from "react-hot-toast";
 
 export const queryClientConfig: QueryClientConfig = {
     defaultOptions: {
@@ -11,7 +11,7 @@ export const queryClientConfig: QueryClientConfig = {
         mutations: {
             onError(error) {
                 if (error.message) {
-                    toast.error(error.message);
+                    toastInstance.error(error.message);
                 }
             },
         },
@@ -19,7 +19,7 @@ export const queryClientConfig: QueryClientConfig = {
     queryCache: new QueryCache({
         onError: async (error) => {
             if (error.message) {
-                toast.error(error.message);
+                toastInstance.error(error.message);
             }
         },
     }),

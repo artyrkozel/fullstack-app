@@ -1,5 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Coin } from "../interfaces/coin-list.interface";
+import { ApiProperty } from '@nestjs/swagger';
+
+import { Coin } from '../interfaces/coin-list.interface';
 
 export class CoinResponse implements Coin {
     @ApiProperty()
@@ -42,7 +43,7 @@ export class CoinResponse implements Coin {
     coinrankingUrl: string;
 
     @ApiProperty()
-    "24hVolume": string;
+    '24hVolume': string;
 
     @ApiProperty()
     btcPrice: string;

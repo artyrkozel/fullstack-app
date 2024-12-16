@@ -1,9 +1,22 @@
-import { Controller, Get, Post, Body, Param, Delete, ParseUUIDPipe, UseGuards, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
-import { UserResponse } from './responses';
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    Param,
+    Delete,
+    ParseUUIDPipe,
+    UseGuards,
+    UseInterceptors,
+    ClassSerializerInterceptor,
+} from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
+
+import { CreateUserDto } from './dto/create-user.dto';
+import { UserResponse } from './responses';
+import { UserService } from './user.service';
+
+import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
 
 @Controller('user')
 export class UserController {

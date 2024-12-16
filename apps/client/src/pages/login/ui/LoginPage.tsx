@@ -1,12 +1,12 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { LoginForm } from '@/features/auth';
 import { ROUTES } from '@/shared/constants/routes';
 import Button, { ButtonTheme } from '@/shared/ui/Button/Button';
 import { Page } from '@/shared/ui/Page/Page';
-import { TextSize } from '@/shared/ui/Text/Text';
-import { Text } from '@/shared/ui/Text/Text';
-import { useRouter } from 'next/navigation';
+import { TextSize , Text } from '@/shared/ui/Text/Text';
+
 
 export default function LoginPage() {
     const router = useRouter();

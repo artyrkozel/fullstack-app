@@ -1,16 +1,20 @@
 FROM node:18
 
+RUN npm install -g pnpm
+
 WORKDIR /app
+
 EXPOSE 5000
+
 COPY package*.json ./
 
-RUN yarn install
+RUN pnpm install
 
 COPY . .
 
 RUN npx prisma generate
 
-CMD ["yarn", "run", "start:dev"]
+CMD ["pnpm", "run", "start:dev"]
 
 # COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 # RUN chmod a+x /docker-entrypoint.sh

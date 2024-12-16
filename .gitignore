@@ -1,65 +1,58 @@
 pgdata
 
-# Node modules (for all workspaces)
-node_modules/
+# Dependencies
+node_modules
+.pnp
+.pnp.js
 
-# Build outputs (for all workspaces and Docker)
-dist/
-build/
-.out/
-*.log
+# Build Outputs
+.next/
+out
+build
+dist
 
-# Docker-related
-.docker/
-docker-compose.override.yml
-docker-compose.prod.yml
-docker-compose.*.yml
-
-# npm cache
-.npm/
-package-lock.json
-npm-debug.log*
-
-# Yarn and pnpm (if using these package managers)
-.yarn/
-.pnp.*
-yarn.lock
-pnpm-lock.yaml
-
-# TypeScript output (common build directories)
-*.tsbuildinfo
-*.d.ts
-
-# IDE/editor folders
-.vscode/
-.idea/
-*.swp
-
-# Environment files
+# Local env files
 .env
 .env.local
-.env.*.local
-.env.production
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Husky hooks
-.husky/
-
-# Lint-staged cache
-.lintstagedrc.json
-lint-staged*.json
-
-# Turborepo cache
-.turbo/
-.turborepo/
-
-# Logs and temp files
+# Logs
+logs
 *.log
-*.tmp
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
-# OS-specific files
+# OS
 .DS_Store
-Thumbs.db
+*.pem
 
-# Local builds
-tmp/
-out/
+# Tests
+/coverage
+/.nyc_output
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

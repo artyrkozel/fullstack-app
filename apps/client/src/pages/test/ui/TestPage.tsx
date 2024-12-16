@@ -1,9 +1,9 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
 import { getBlockList } from '../../../shared/api/generated';
 import { Page } from '@/shared/ui/Page/Page';
-import Image from 'next/image';
 
 export default function TestPage() {
     const { data: test } = useQuery({

@@ -1,8 +1,8 @@
 'use client';
 
+import { cva } from 'class-variance-authority';
 import { ChangeEvent, InputHTMLAttributes, forwardRef, memo, useCallback } from 'react';
 import InputMask from 'react-input-mask';
-import { cva } from 'class-variance-authority';
 import { cn } from '@/shared/lib/cn';
 
 export type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;

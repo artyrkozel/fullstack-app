@@ -1,6 +1,7 @@
-import { IsPasswordsMatchingConstraint } from '@common/decorators';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString, MinLength, Validate } from 'class-validator';
+
+import { IsPasswordsMatchingConstraint } from '@common/decorators';
 
 export class RegisterDto {
     @ApiProperty()

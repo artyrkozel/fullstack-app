@@ -12,15 +12,17 @@ import {
     ClassSerializerInterceptor,
     BadRequestException,
 } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { RegisterDto } from './dto/register.dto';
-import { LoginDto } from './dto/login.dto';
-import { Tokens } from './interface';
-import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { User } from '@prisma/client';
+import { Response } from 'express';
+
+import { AuthService } from './auth.service';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { Tokens } from './interface';
+
 import { Cookie, UserAgent } from '@common/decorators';
 import { UserResponse } from 'src/user/responses';
-import { User } from '@prisma/client';
 
 const REFRESH_TOKEN = 'refreshToken';
 
@@ -37,7 +39,7 @@ export class AuthController {
     async register(@Body() createAuthDto: RegisterDto) {
         const user = await this.authService.register(createAuthDto);
         if (!user) {
-            throw new BadRequestException('Data not valid')
+            throw new BadRequestException('Data not valid');
         }
         return new UserResponse(user);
     }
@@ -55,9 +57,13 @@ export class AuthController {
             sameSite: 'lax',
             path: '/',
             maxAge: 7 * 24 * 60 * 60 * 1000,
-          });
+        });
 
-        response.status(HttpStatus.OK).json({ accessToken: tokens.tokens.accessToken, user: tokens.user, refreshToken: tokens.tokens.refreshToken.token });
+        response.status(HttpStatus.OK).json({
+            accessToken: tokens.tokens.accessToken,
+            user: tokens.user,
+            refreshToken: tokens.tokens.refreshToken.token,
+        });
     }
 
     @Get('logout')
@@ -102,7 +108,7 @@ export class AuthController {
             secure: false,
             // path: '/',
         });
-        
+
         res.status(HttpStatus.CREATED).json({ accessToken: tokens.accessToken, user });
         return res;
     };

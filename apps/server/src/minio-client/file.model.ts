@@ -5,14 +5,14 @@ export interface BufferedFile {
     mimetype: AppMimeType;
     size: number;
     buffer: Buffer | string;
-  }
-  
-  export interface StoredFile extends HasFile, StoredFileMetadata {}
-  
-  export interface HasFile {
+}
+
+export interface StoredFile extends HasFile, StoredFileMetadata {}
+
+export interface HasFile {
     file: Buffer | string;
-  }
-  export interface StoredFileMetadata {
+}
+export interface StoredFileMetadata {
     id: string;
     name: string;
     encoding: string;
@@ -20,8 +20,6 @@ export interface BufferedFile {
     size: number;
     updatedAt: Date;
     fileSrc?: string;
-  }
-  
-  export type AppMimeType =
-    | 'image/png'
-    | 'image/jpeg';
+}
+
+export type AppMimeType = 'image/png' | 'image/jpeg';
