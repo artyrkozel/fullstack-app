@@ -1,0 +1,44 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 5000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings 0 --fix",
+    "api:download": "wget http://localhost:3000/api-yaml -O ./src/shared/api/schema.yaml",
+    "api:generate": "orval"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.60.2",
+    "axios": "^1.7.7",
+    "axios-auth-refresh": "^3.3.6",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "cookie": "^1.0.1",
+    "lodash": "^4.17.21",
+    "next": "14.2.17",
+    "next-auth": "^4.24.10",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.53.2",
+    "react-hot-toast": "^2.4.1",
+    "react-input-mask": "^2.0.4",
+    "tailwind-merge": "^2.5.4"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^14.0.2",
+    "@types/eslint": "^8.44.7",
+    "@types/lodash": "^4.17.13",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/react-input-mask": "^3.0.5",
+    "eslint": "^8.53.0",
+    "orval": "^7.2.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
