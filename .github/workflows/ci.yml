@@ -27,6 +27,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install Prisma and generate client in the api app
+        run: |
+          cd apps/api
+          pnpm add prisma @prisma/client --dev
+          npx prisma generate
+
       - name: Linting
         run: pnpm run lint
 
