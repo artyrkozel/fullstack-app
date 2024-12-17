@@ -1,5 +1,5 @@
-import { getUserLocale } from '@/shared/queries/locale';
 import {getRequestConfig} from 'next-intl/server';
+import { getUserLocale } from '@/shared/queries/locale';
 
 export default getRequestConfig(async () => {
   const locale = await getUserLocale();

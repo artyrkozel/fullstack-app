@@ -1,9 +1,9 @@
 'use client';
 
-import { setUserLocale } from '@/shared/queries/locale';
-import Button from '@/shared/ui/Button/Button';
 import { useLocale } from 'next-intl';
 import { useTransition } from 'react';
+import { setUserLocale } from '@/shared/queries/locale';
+import Button from '@/shared/ui/Button/Button';
 
 interface ILangSwitcher {
     lang: string;

@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 import '../styles';
+import { getLocale } from 'next-intl/server';
 import { Toaster } from 'react-hot-toast';
 import { AppProvider } from '../providers/app-provider';
+import { IntlProvider } from '../providers/i18n-provider';
 import { toastOptions } from '@/shared/config/toaster.config';
 import { Sidebar } from '@/widgets/sidebar';
-import { getLocale } from 'next-intl/server';
-import { IntlProvider } from '../providers/i18n-provider';
 
 const manrope = Manrope({
     subsets: ['latin'],

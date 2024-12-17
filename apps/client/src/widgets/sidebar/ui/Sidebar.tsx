@@ -2,6 +2,7 @@
 
 import { cva } from 'class-variance-authority';
 import { usePathname, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 import DashboardIcon from '../../../../public/svg/DashboardIcon';
 import Market from '../../../../public/svg/Market';
@@ -13,7 +14,6 @@ import { SidebarItemType } from '@/shared/types/types';
 import Button from '@/shared/ui/Button/Button';
 import { Logo } from '@/shared/ui/Logo/Logo';
 import { LangSwitcher } from '@/widgets/lang-switcher';
-import { useTranslations } from 'next-intl';
 
 interface ISidebar {
     className?: string;
