@@ -12,6 +12,8 @@ import { Logout } from '@/shared/queries/auth-service';
 import { SidebarItemType } from '@/shared/types/types';
 import Button from '@/shared/ui/Button/Button';
 import { Logo } from '@/shared/ui/Logo/Logo';
+import { LangSwitcher } from '@/widgets/lang-switcher';
+import { useTranslations } from 'next-intl';
 
 interface ISidebar {
     className?: string;
@@ -40,6 +42,7 @@ export function Sidebar({ className }: ISidebar) {
     const [collapsed, setCollapsed] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
+    const t = useTranslations('Sidebar');
 
     const menuList = useMemo(
         () => sidebarItemsList.map((item) => <SidebarItem item={item} collapsed={collapsed} key={item.path} />),
@@ -68,6 +71,7 @@ export function Sidebar({ className }: ISidebar) {
                 <Button onClick={handleLogout} type="submit">
                     Logout
                 </Button>
+                <LangSwitcher lang={t('language')} />
             </div>
         </aside>
     );

@@ -6,7 +6,7 @@ WORKDIR /frontend
 
 EXPOSE 5000
 
-COPY package*.json ./
+COPY package.json ./
 
 RUN pnpm install
 
