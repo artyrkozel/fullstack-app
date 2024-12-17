@@ -2,11 +2,11 @@ FROM node:18
 
 RUN npm install -g pnpm
 
-WORKDIR /app
+WORKDIR /frontend
 
 EXPOSE 5000
 
-COPY package*.json ./
+COPY package.json ./
 
 RUN pnpm install
 

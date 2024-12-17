@@ -52,8 +52,8 @@ services:
     depends_on:
       - api
     volumes:
-      - ./apps/client:/app
-      - /app/node_modules
+      - ./apps/client:/frontend
+      - /frontend/node_modules
     networks: 
       - local
   
