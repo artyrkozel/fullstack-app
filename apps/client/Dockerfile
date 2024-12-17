@@ -2,7 +2,7 @@ FROM node:18
 
 RUN npm install -g pnpm
 
-WORKDIR /app
+WORKDIR /frontend
 
 EXPOSE 5000
 
