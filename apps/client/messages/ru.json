@@ -3,6 +3,9 @@
         "title": "Привет"
     },
     "Sidebar": {
-        "language": "Русский"
+        "language": "Русский",
+        "Dashboard": "Дашборд",
+        "Trade": "Обмен",
+        "Actions": "Операции"
     }
 }

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { memo } from 'react';
 import { cn } from '@/shared/lib/cn';
 import { SidebarItemType } from '@/shared/types/types';
@@ -13,6 +14,7 @@ interface SidebarItemProps {
 
 export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
     const pathName = usePathname();
+    const t = useTranslations('Sidebar');
 
     return (
         <Link
@@ -23,7 +25,7 @@ export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
             href={item.path}
         >
             {item.Icon && <item.Icon />}
-            {!collapsed && <span className="pl-4 text-gray">{item.text}</span>}
+            {!collapsed && <span className="pl-4 text-gray">{t(item.text)}</span>}
         </Link>
     );
 });

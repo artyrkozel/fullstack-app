@@ -3,6 +3,9 @@
         "title": "Hello world!"
     },
     "Sidebar": {
-        "language": "English"
+        "language": "English",
+        "Trade": "Trade",
+        "Actions": "Actions",
+        "Dashboard": "Dashboard"
     }
 }
