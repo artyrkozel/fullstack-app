@@ -1,10 +1,12 @@
 import { FC } from 'react';
 import { cn } from '@/shared/lib/cn';
 import { Text, TextAlign } from '@/shared/ui/Text/Text';
+import { IWalletItem } from '../model/types';
+import { WalletListItem } from './WalletListItem';
 
 interface IWalletListProps {
     className?: string;
-    walletCoins: any;
+    walletCoins: IWalletItem[];
 }
 
 export const WalletList: FC<IWalletListProps> = ({ className, walletCoins }) => {
@@ -13,11 +15,10 @@ export const WalletList: FC<IWalletListProps> = ({ className, walletCoins }) => 
     }
 
     return (
-        <div className={cn('border border-border-ligth rounded-lg', {}, [className])}>
-            {/* {walletCoins.map((el: any) => (
-        <WalletItem key={el.name} walletData={el} />
-      ))} */}
-      <div>dfdfdf</div>
+        <div className={cn('first:rounded-r-lg', {}, [className])}>
+            {walletCoins.map((el) => (
+                <WalletListItem key={el.iconUrl} walletItem={el} />
+            ))}
         </div>
     );
 };
