@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { cn } from '@/shared/lib/cn';
-import { Text, TextAlign } from '@/shared/ui/Text/Text';
 import { IWalletItem } from '../model/types';
 import { WalletListItem } from './WalletListItem';
+import { cn } from '@/shared/lib/cn';
+import { Text, TextAlign } from '@/shared/ui/Text/Text';
 
 interface IWalletListProps {
     className?: string;

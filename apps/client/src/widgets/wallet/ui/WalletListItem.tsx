@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { cn } from '@/shared/lib/cn';
-import { Text, TextColor, TextSize } from '@/shared/ui/Text/Text';
-import { IWalletItem } from '../model/types';
-import { HStack, VStack } from '@/shared/ui/Stack';
 import Image from 'next/image';
+import { FC } from 'react';
+import { IWalletItem } from '../model/types';
+import { cn } from '@/shared/lib/cn';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { Text, TextColor, TextSize } from '@/shared/ui/Text/Text';
 
 interface IWalletListProps {
     className?: string;
