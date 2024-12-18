@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { memo } from 'react';
 import { cn } from '@/shared/lib/cn';
 import { SidebarItemType } from '@/shared/types/types';
-import { useTranslations } from 'next-intl';
 
 interface SidebarItemProps {
     item: SidebarItemType;
