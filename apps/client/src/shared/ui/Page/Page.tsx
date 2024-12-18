@@ -10,7 +10,7 @@ interface PageProps {
 
 export const Page = memo(({ className, pageTitle = '', children }: PageProps) => {
     return (
-        <main className={cn('py-16 px-10 grow h-screen shrink overflow-auto bg-bg-page', {}, [className || ''])}>
+        <main className={cn('py-10 px-16 grow h-screen shrink overflow-auto bg-bg-page', {}, [className || ''])}>
             <Text title={pageTitle} className="mb-11 font-bold" />
             {children}
         </main>
