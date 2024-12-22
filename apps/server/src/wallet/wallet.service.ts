@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { Wallet } from '@prisma/client';
 
 import { CreateWalletDto } from './dto/create-wallet.dto';
 
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Wallet } from '@prisma/client';
 
 @Injectable()
 export class WalletService {

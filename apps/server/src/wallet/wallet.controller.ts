@@ -9,18 +9,18 @@ import {
     ClassSerializerInterceptor,
     UseGuards,
 } from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
 
 import { CreateWalletDto } from './dto/create-wallet.dto';
+import { WalletResponse } from './responses';
 import { WalletService } from './wallet.service';
 
 import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
-import { ApiOkResponse } from '@nestjs/swagger';
-import { WalletResponse } from './responses';
 
 @Controller('wallet')
 export class WalletController {
     constructor(private readonly walletService: WalletService) {}
-    
+
     @UseInterceptors(ClassSerializerInterceptor)
     @UseGuards(JwtAuthGuard)
     @Post('create')
