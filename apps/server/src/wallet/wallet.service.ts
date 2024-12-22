@@ -16,7 +16,6 @@ export class WalletService {
         return await this.prismaService.wallet.create({
             data: {
                 userId: createWalletDto.userId,
-                address: createWalletDto.address,
                 balances: {
                     create: [],
                 },
