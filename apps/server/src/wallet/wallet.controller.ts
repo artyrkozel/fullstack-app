@@ -9,8 +9,10 @@ import {
     ClassSerializerInterceptor,
     UseGuards,
 } from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
 
 import { CreateWalletDto } from './dto/create-wallet.dto';
+import { WalletResponse } from './responses';
 import { WalletService } from './wallet.service';
 
 import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
@@ -22,10 +24,13 @@ export class WalletController {
     @UseInterceptors(ClassSerializerInterceptor)
     @UseGuards(JwtAuthGuard)
     @Post('create')
-    create(@Body() createWalletDto: CreateWalletDto) {
-        return this.walletService.create(createWalletDto);
+    createWallet(@Body() createWalletDto: CreateWalletDto) {
+        return this.walletService.createWallet(createWalletDto);
     }
 
+    @ApiOkResponse({
+        type: WalletResponse,
+    })
     @UseGuards(JwtAuthGuard)
     @Get(':walletId')
     getWalletById(@Param('walletId') walletId: string) {

@@ -88,7 +88,7 @@ export class AuthService {
                 email: user.email,
                 role: user.roles,
             },
-            { expiresIn: '20s', secret: process.env.JWT_SECRET },
+            { expiresIn: '60s', secret: process.env.JWT_SECRET },
         );
 
         const accessTokenRes = 'Bearer ' + accessToken;
