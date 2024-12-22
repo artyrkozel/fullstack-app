@@ -8,6 +8,7 @@ import { MinioClientModule } from './minio-client/minio-client.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { WalletModule } from './wallet/wallet.module';
+import { WalletBalanceItemModule } from './wallet-balance-item/wallet-balance-item.module';
 
 @Module({
     imports: [
@@ -19,6 +20,7 @@ import { WalletModule } from './wallet/wallet.module';
         MinioClientModule,
         FileUploadModule,
         WalletModule,
+        WalletBalanceItemModule,
     ],
     controllers: [],
     providers: [],
