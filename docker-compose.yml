@@ -71,7 +71,7 @@ services:
       - minio-data:/data
     networks: 
       - local
-
+    
 volumes:
   minio-data:
   pgdata:

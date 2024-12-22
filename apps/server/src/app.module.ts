@@ -7,6 +7,7 @@ import { FileUploadModule } from './file-upload/file-upload.module';
 import { MinioClientModule } from './minio-client/minio-client.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
+import { WalletModule } from './wallet/wallet.module';
 
 @Module({
     imports: [
@@ -17,6 +18,7 @@ import { UserModule } from './user/user.module';
         ConinsModule,
         MinioClientModule,
         FileUploadModule,
+        WalletModule,
     ],
     controllers: [],
     providers: [],
